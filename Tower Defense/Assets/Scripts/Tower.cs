@@ -6,18 +6,27 @@ public class Tower : MonoBehaviour
 {
     public Transform shootElem;
     public float dmg = 10;
-    public float shootSpeed;
     public GameObject bullet;
     public Transform target;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public float shootDelay;
+    bool isShoot;
+    
     void Update()
     {
-        
+        if (target)
+        {
+            if (!isShoot)
+            {
+                StartCoroutine(shoot());
+            }
+        }
+    }
+    IEnumerator shoot()
+    {
+        isShoot = true;
+        yield return new WaitForSeconds(shootDelay);
+        GameObject b = GameObject.Instantiate(bullet, shootElem.position, Quaternion.identity) as GameObject;
+        b.GetComponent<bulletTower>().target = target;
+        isShoot = false;
     }
 }
