@@ -17,6 +17,7 @@ public class MoveToWayPoint : MonoBehaviour
         if (curWaypointIndex < waypoints.Length)
         {
             transform.position = Vector2.MoveTowards(transform.position, waypoints[curWaypointIndex].position, Time.deltaTime * Speed);
+            //transform.LookAt(waypoints[curWaypointIndex].position);
             if (Vector2.Distance(transform.position, waypoints[curWaypointIndex].position) < 0.5f)
             {
                 curWaypointIndex++;
