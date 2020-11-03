@@ -4,29 +4,74 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public Transform shootElem;
-    public float dmg = 10;
-    public GameObject bullet;
-    public Transform target;
-    public float shootDelay;
-    bool isShoot;
-    
-    void Update()
+
+    [Header("Attribute")]
+    public float range = 2f;
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
+
+    [Header("Unity Setup Fields")]
+
+    public string enemyTag = "enemyBarrel";
+
+    private Transform target;
+
+    public GameObject bulletPrefab;
+    public Transform FirePoint;
+
+    private void Start()
     {
-        if (target)
+        InvokeRepeating("UpdateTarget", 0f, 0.05f);
+    }
+
+    void UpdateTarget()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+        foreach (GameObject enemy in enemies)
         {
-            if (!isShoot)
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance)
             {
-                StartCoroutine(shoot());
+                shortestDistance = distanceToEnemy;
+                nearestEnemy = enemy;
             }
         }
+        if (nearestEnemy != null && shortestDistance <= range)
+        {
+            target = nearestEnemy.transform;
+        }else
+        {
+            target = null;
+        }
     }
-    IEnumerator shoot()
+    void Update()
     {
-        isShoot = true;
-        yield return new WaitForSeconds(shootDelay);
-        GameObject b = GameObject.Instantiate(bullet, shootElem.position, Quaternion.identity) as GameObject;
-        b.GetComponent<bulletTower>().target = target;
-        isShoot = false;
+        if (target == null)
+            return;
+        if(fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
+    }
+
+    void Shoot()
+    {
+        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, FirePoint.position, FirePoint.rotation);
+        bulletTower bullet = bulletGO.GetComponent<bulletTower>();
+        if(bullet != null)
+        {
+            bullet.Seek(target);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

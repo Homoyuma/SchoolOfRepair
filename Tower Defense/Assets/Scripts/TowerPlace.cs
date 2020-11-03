@@ -21,7 +21,6 @@ public class TowerPlace : MonoBehaviour
             {
                 continue;
             }
-            Debug.Log(position);
         }
         FillArray();
     }
