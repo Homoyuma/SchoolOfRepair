@@ -15,6 +15,7 @@ public class MobSpawn : MonoBehaviour
 
     void Start()
     {
+        
         InvokeRepeating("SpawnEnemy", startTime, EnemyInterval);
     }
 
