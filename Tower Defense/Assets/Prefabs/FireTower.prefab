@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7572400088577798945}
   - component: {fileID: 8236405304347425023}
   m_Layer: 0
-  m_Name: Tower
+  m_Name: FireTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 84bf5cb3693b7784f9d41ab0e83d230d, type: 3}
   m_Color: {r: 0.8962264, g: 0.12259703, b: 0.12259703, a: 1}
   m_FlipX: 0

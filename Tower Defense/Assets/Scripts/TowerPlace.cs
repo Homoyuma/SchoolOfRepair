@@ -18,13 +18,11 @@ public class TowerPlace : MonoBehaviour
 
     public GameObject GetTowerTobuild()
     {
-        Debug.Log("GetTowerTobuild");
         return towerToBuild;
     }
 
     public void SetTowerToBuild(GameObject tower)
     {
-        Debug.Log("SetTowerToBuild");
         towerToBuild = tower;
     }
     private void Start()
@@ -58,7 +56,6 @@ public class TowerPlace : MonoBehaviour
     {
         if (GetTowerTobuild() == null)
             return;
-        Debug.Log("OnMouseDown");
         towerToBuild = GetTowerTobuild();
         Vector3 offset = new Vector3(0, 0.30f, 0f);
         Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -67,8 +64,6 @@ public class TowerPlace : MonoBehaviour
         Vector3Int cellPosition = tilemap.WorldToCell(pz);
         foreach (Tile tile in tiles)
         {
-            Debug.Log("foreach");
-
             if (tile.position != cellPosition)
             {
                 continue;

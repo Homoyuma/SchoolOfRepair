@@ -8,10 +8,28 @@ public class MoveToWayPoint : MonoBehaviour
     public Transform[] waypoints;
     int curWaypointIndex = 0;
 
-    void Suicide()
+    public int health = 100;
+
+    void EndPath()
+    {
+        PlayerStats.Lives--;
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
     {
         Destroy(gameObject);
     }
+
     void Update()
     {
         if (curWaypointIndex < waypoints.Length)
@@ -24,7 +42,7 @@ public class MoveToWayPoint : MonoBehaviour
             }
         }
         else {
-            Suicide();
+            EndPath();
         }
     }
 }

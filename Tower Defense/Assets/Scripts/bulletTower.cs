@@ -6,6 +6,7 @@ public class bulletTower : MonoBehaviour
 {
     public float speed = 10f;
     private Transform target;
+    public int damage = 50;
     public GameObject impactEffect;
 
     public void Seek(Transform _target)
@@ -26,19 +27,22 @@ public class bulletTower : MonoBehaviour
 
         if (dir.magnitude <= distanceThisFrame)
         {
-            HitTarget();
+            HitTarget(target);
             return;
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-
     }
 
-    void HitTarget()
+    void HitTarget(Transform enemy)
     {
+        MoveToWayPoint e = enemy.GetComponent<MoveToWayPoint>();
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 2f);
-        Destroy(target.gameObject);
+        if (e != null)
+        {
+            e.TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
 }
