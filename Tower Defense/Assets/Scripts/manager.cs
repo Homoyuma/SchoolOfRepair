@@ -22,16 +22,12 @@ public class manager : MonoBehaviour
             EndGame();
         }
 
-        if (MobSpawn.enemiesAlive == 0 && MobSpawn.enemyCount == 10)
-        {
-            WinLevel();
-        }
+
     }
     void EndGame()
     {
         gameEnded = true;
         gameOverUI.SetActive(true);
-
     }
 
     public void WinLevel()

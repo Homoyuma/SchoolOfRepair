@@ -13,6 +13,7 @@ public class MobSpawn : MonoBehaviour
     public string gateTag;
     public static int enemyCount = 0;
     public static int enemiesAlive = 0;
+    public manager mng;
 
     void Start()
     {
@@ -25,6 +26,11 @@ public class MobSpawn : MonoBehaviour
         if (enemyCount == WaveSize)
         {
             CancelInvoke("SpawnEnemy");
+
+        }
+        if (enemiesAlive == 0 && enemyCount == 10 && PlayerStats.Lives > 0)
+        {
+            mng.WinLevel();
         }
     }
 
