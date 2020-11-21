@@ -13,6 +13,7 @@ public class MoveToWayPoint : MonoBehaviour
     void EndPath()
     {
         PlayerStats.Lives--;
+        MobSpawn.enemiesAlive--;
         Destroy(gameObject);
     }
 
@@ -27,6 +28,7 @@ public class MoveToWayPoint : MonoBehaviour
 
     void Die()
     {
+        MobSpawn.enemiesAlive--;
         Destroy(gameObject);
     }
 

@@ -11,7 +11,8 @@ public class MobSpawn : MonoBehaviour
     public float startTime;
     public Transform[] WayPoints;
     public string gateTag;
-    int enemyCount = 0;
+    public static int enemyCount = 0;
+    public static int enemiesAlive = 0;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class MobSpawn : MonoBehaviour
     void SpawnEnemy()
     {
         enemyCount++;
+        enemiesAlive++;
         GameObject enemy = GameObject.Instantiate(EnemyPrefab, spawnPoint.position, Quaternion.identity) as GameObject;
         enemy.GetComponent<MoveToWayPoint>().waypoints = WayPoints;
     }

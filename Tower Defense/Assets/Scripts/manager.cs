@@ -5,7 +5,13 @@ using UnityEngine;
 public class manager : MonoBehaviour
 {
     public GameObject gameOverUI;
-    private bool gameEnded = false;
+    public GameObject completeLevelUI;
+    private bool gameEnded;
+
+    private void Start()
+    {
+        gameEnded = false;
+    }
     void Update()
     {
         if (gameEnded)
@@ -15,11 +21,22 @@ public class manager : MonoBehaviour
         {
             EndGame();
         }
+
+        if (MobSpawn.enemiesAlive == 0 && MobSpawn.enemyCount == 10)
+        {
+            WinLevel();
+        }
     }
     void EndGame()
     {
         gameEnded = true;
         gameOverUI.SetActive(true);
 
+    }
+
+    public void WinLevel()
+    {
+        gameEnded = true;
+        completeLevelUI.SetActive(true);
     }
 }
