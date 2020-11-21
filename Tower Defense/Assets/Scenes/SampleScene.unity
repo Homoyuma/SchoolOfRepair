@@ -8239,6 +8239,7 @@ MonoBehaviour:
   - {fileID: 1220115690}
   - {fileID: 1903839411}
   gateTag: 
+  mng: {fileID: 1870356480}
 --- !u!114 &1870356478
 MonoBehaviour:
   m_ObjectHideFlags: 0
