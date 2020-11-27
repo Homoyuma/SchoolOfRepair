@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static int Money;
-    public int startMoney = 400;
+    public int startMoney = 600;
     
     public static int Lives;
-    public int startLives = 2;
+    public int startLives = 10;
 
     void Start()
     {
+        Money = startMoney;
         Lives = startLives;
     }
 }

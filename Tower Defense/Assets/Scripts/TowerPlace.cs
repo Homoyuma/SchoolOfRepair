@@ -14,17 +14,15 @@ public class TowerPlace : MonoBehaviour
     public GameObject FireTowerPrefab;
     public GameObject WaterTowerPrefab;
 
-    private GameObject towerToBuild;
+    private TowerBlueprint towerToBuild;
 
-    public GameObject GetTowerTobuild()
-    {
-        return towerToBuild;
-    }
+    public bool CanBuild { get { return towerToBuild != null;  } }
 
-    public void SetTowerToBuild(GameObject tower)
+    public void SelectTowerToBuild(TowerBlueprint tower)
     {
         towerToBuild = tower;
     }
+
     private void Start()
     {
         instance = this;
@@ -54,9 +52,8 @@ public class TowerPlace : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GetTowerTobuild() == null)
+        if (!CanBuild)
             return;
-        towerToBuild = GetTowerTobuild();
         Vector3 offset = new Vector3(0, 0.30f, 0f);
         Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pz.z = 0;
@@ -70,14 +67,22 @@ public class TowerPlace : MonoBehaviour
             }
             if(tile.empty)
             {
-                tile.tower = Instantiate(towerToBuild, tilemap.CellToWorld(tile.position)+offset,Quaternion.identity);
+                if (PlayerStats.Money < towerToBuild.cost)
+                {
+                    Debug.Log("Not enough money");
+                    return;
+                }
+                PlayerStats.Money -= towerToBuild.cost;
+
+                tile.tower = Instantiate(towerToBuild.prefab, tilemap.CellToWorld(tile.position) + offset, Quaternion.identity);
                 tile.empty = false;
+                Debug.Log("Money left: " + PlayerStats.Money);
             }
-            else
+            /*else
             {
                 Destroy(tile.tower);
                 tile.empty = true;
-            }
+            }*/
         }
     }
 }

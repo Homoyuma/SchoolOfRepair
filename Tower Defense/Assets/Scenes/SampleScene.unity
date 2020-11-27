@@ -799,32 +799,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 801657272}
     m_Modifications:
-    - target: {fileID: 1515668130697390082, guid: ed8c9e9c813a22c4cacf3073684ea7f0,
-        type: 3}
-      propertyPath: m_PreferredWidth
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515668130697390082, guid: ed8c9e9c813a22c4cacf3073684ea7f0,
-        type: 3}
-      propertyPath: m_PreferredHeight
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 2553630734304146661, guid: ed8c9e9c813a22c4cacf3073684ea7f0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 801657273}
-    - target: {fileID: 2553630734304146661, guid: ed8c9e9c813a22c4cacf3073684ea7f0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurchaseFireTower
-      objectReference: {fileID: 0}
-    - target: {fileID: 3032970966730055164, guid: ed8c9e9c813a22c4cacf3073684ea7f0,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 19410344fd148824e93f80e567f54dbd,
-        type: 3}
     - target: {fileID: 5667211901267907333, guid: ed8c9e9c813a22c4cacf3073684ea7f0,
         type: 3}
       propertyPath: m_Name
@@ -3287,6 +3266,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06267f8f3bc6774eb62ac5cae03f375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireTower:
+    prefab: {fileID: 6894440568631228465, guid: e4d8bd2080981b641a04b716b71b35be,
+      type: 3}
+    cost: 100
+  WaterTower:
+    prefab: {fileID: 8304317392387760921, guid: ee27c7a2983592945a81f7e9aa0e7b54,
+      type: 3}
+    cost: 50
 --- !u!114 &801657274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3560,37 +3547,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 801657272}
     m_Modifications:
-    - target: {fileID: 194769960576669183, guid: b498936a5d2a8a844a6a23c4dab21c5e,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 19410344fd148824e93f80e567f54dbd,
-        type: 3}
-    - target: {fileID: 194769960576669183, guid: b498936a5d2a8a844a6a23c4dab21c5e,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.14346743
-      objectReference: {fileID: 0}
-    - target: {fileID: 194769960576669183, guid: b498936a5d2a8a844a6a23c4dab21c5e,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.3756463
-      objectReference: {fileID: 0}
-    - target: {fileID: 194769960576669183, guid: b498936a5d2a8a844a6a23c4dab21c5e,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.9811321
-      objectReference: {fileID: 0}
     - target: {fileID: 852553235509394662, guid: b498936a5d2a8a844a6a23c4dab21c5e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 801657273}
-    - target: {fileID: 4443941343945515009, guid: b498936a5d2a8a844a6a23c4dab21c5e,
-        type: 3}
-      propertyPath: m_PreferredHeight
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 4881667475264368643, guid: b498936a5d2a8a844a6a23c4dab21c5e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8249,7 +8210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546b0742716bebb45aaea281785472c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMoney: 400
+  startMoney: 600
   startLives: 10
 --- !u!4 &1870356479
 Transform:

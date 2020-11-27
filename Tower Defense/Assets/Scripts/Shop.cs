@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    public void PurchaseFireTower()
+    public TowerBlueprint FireTower;
+    public TowerBlueprint WaterTower;
+
+    public void SelectFireTower()
     {
-        TowerPlace.instance.SetTowerToBuild(TowerPlace.instance.FireTowerPrefab);
+        TowerPlace.instance.SelectTowerToBuild(FireTower);
     }
-    public void PurchaseWaterTower()
+    public void SelectWaterTower()
     {
-        TowerPlace.instance.SetTowerToBuild(TowerPlace.instance.WaterTowerPrefab);
+        TowerPlace.instance.SelectTowerToBuild(WaterTower);
     }
 }
