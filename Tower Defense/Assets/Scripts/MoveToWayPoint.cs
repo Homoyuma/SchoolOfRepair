@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoveToWayPoint : MonoBehaviour
 {
@@ -8,8 +9,16 @@ public class MoveToWayPoint : MonoBehaviour
     public Transform[] waypoints;
     int curWaypointIndex = 0;
 
-    public int health = 100;
 
+    public float startHealth = 100;
+    private float health;
+
+    public Image healthBar;
+
+    void Start()
+    {
+        health = startHealth;
+    }
     void EndPath()
     {
         PlayerStats.Lives--;
@@ -20,6 +29,7 @@ public class MoveToWayPoint : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health -= amount;
+        healthBar.fillAmount = health / startHealth;
         if (health <= 0)
         {
             Die();
