@@ -21,8 +21,6 @@ public class manager : MonoBehaviour
         {
             EndGame();
         }
-
-
     }
     void EndGame()
     {

@@ -6721,7 +6721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220115689}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.56, y: 1.18, z: 0}
+  m_LocalPosition: {x: -2.72, y: 1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1719780844}
@@ -6940,7 +6940,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1967604404}
-        m_MethodName: PlayGame
+        m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7360,7 +7360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719780843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.814, y: -1.318, z: 0.03100586}
+  m_LocalPosition: {x: 1.92, y: -1.2, z: 0.03100586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1903839411}
@@ -8228,17 +8228,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57168948895e74a46ba1ff71d2443978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveSize: 10
   EnemyPrefab: {fileID: 8709757139500154961, guid: ace3144c45afa4a4986be71c3d57256d,
     type: 3}
-  EnemyInterval: 1
+  timeBetweenWaves: 5
   spawnPoint: {fileID: 1870356479}
-  startTime: 2
   WayPoints:
   - {fileID: 1719780844}
   - {fileID: 1220115690}
   - {fileID: 1903839411}
-  gateTag: 
   mng: {fileID: 1870356480}
 --- !u!114 &1870356478
 MonoBehaviour:
@@ -8812,7 +8809,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1967604402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c81b94a8d55ac7e46bc7e6353b67d85c, type: 3}
+  m_Script: {fileID: 11500000, guid: ca0205bd76b65e542b7bab1eacfc2a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1972086562
