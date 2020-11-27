@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class MobSpawn : MonoBehaviour
 {
     public GameObject EnemyPrefab;
-    private float countdown = 2f;
+    public float countdown = 2f;
     public float timeBetweenWaves;
+    public float Interval = 2f;
     private int waveIndex = 1;
     public Transform spawnPoint;
     public Transform[] WayPoints;
@@ -22,11 +23,6 @@ public class MobSpawn : MonoBehaviour
 
     void Update()
     {
-        /*
-        if (enemiesAlive == 0 && enemyCount == 10 && PlayerStats.Lives > 0)
-        {
-  
-        }*/
         if (countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
@@ -44,7 +40,7 @@ public class MobSpawn : MonoBehaviour
             for (int i = 0; i < waveIndex; i++)
             {
                 SpawnEnemy();
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(Interval);
             }
         }
     }

@@ -10,10 +10,6 @@ public class TowerPlace : MonoBehaviour
     public List<Tile> tiles;
 
     public static TowerPlace instance;
-
-    public GameObject FireTowerPrefab;
-    public GameObject WaterTowerPrefab;
-
     private TowerBlueprint towerToBuild;
 
     public bool CanBuild { get { return towerToBuild != null;  } }
