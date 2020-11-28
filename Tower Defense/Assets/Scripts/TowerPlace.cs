@@ -63,16 +63,16 @@ public class TowerPlace : MonoBehaviour
             }
             if(tile.empty)
             {
-                if (PlayerStats.Money < towerToBuild.cost)
+                if (PlayerStats.Gold < towerToBuild.cost)
                 {
                     Debug.Log("Not enough money");
                     return;
                 }
-                PlayerStats.Money -= towerToBuild.cost;
+                PlayerStats.Gold -= towerToBuild.cost;
 
                 tile.tower = Instantiate(towerToBuild.prefab, tilemap.CellToWorld(tile.position) + offset, Quaternion.identity);
                 tile.empty = false;
-                Debug.Log("Money left: " + PlayerStats.Money);
+                Debug.Log("Money left: " + PlayerStats.Gold);
             }
             /*else
             {
