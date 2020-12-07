@@ -50,6 +50,6 @@ public class MobSpawn : MonoBehaviour
         enemyCount++;
         enemiesAlive++;
         GameObject enemy = GameObject.Instantiate(EnemyPrefab, spawnPoint.position, Quaternion.identity) as GameObject;
-        enemy.GetComponent<MoveToWayPoint>().waypoints = WayPoints;
+        enemy.GetComponent<EnemyMovement>().waypoints = WayPoints;
     }
 }

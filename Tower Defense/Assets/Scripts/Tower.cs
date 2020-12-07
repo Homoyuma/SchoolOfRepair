@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    private Transform target;
+    private MoveToWayPoint targetEnemy;
 
-    [Header("Attribute")]
+    [Header("General")]
     public float range = 2f;
+
+    [Header("Use Bullets (default)")]
+    public GameObject bulletPrefab;
     public float fireRate = 1f;
     private float fireCountdown = 0f;
+
+    [Header("Use Laser")]
+    public bool useLaser = false;
+    public LineRenderer lineRenderer;
+    public int damageOverTime = 5;
+    public float slowP = .5f;
 
     [Header("Unity Setup Fields")]
 
     public string enemyTag = "enemyBarrel";
 
-    private Transform target;
-
-    public GameObject bulletPrefab;
     public Transform FirePoint;
 
     private void Start()
@@ -41,6 +49,7 @@ public class Tower : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            targetEnemy = nearestEnemy.GetComponent<MoveToWayPoint>();
         }else
         {
             target = null;
@@ -49,14 +58,41 @@ public class Tower : MonoBehaviour
     void Update()
     {
         if (target == null)
-            return;
-        if(fireCountdown <= 0f)
         {
-            Shoot();
-            fireCountdown = 1f / fireRate;
+            if (useLaser)
+            {
+                if (lineRenderer.enabled)
+                    lineRenderer.enabled = false;
+            }
+            return;
         }
 
-        fireCountdown -= Time.deltaTime;
+        if (useLaser)
+        {
+            Laser();
+        }
+        else
+        {
+            if (fireCountdown <= 0f)
+            {
+                Shoot();
+                fireCountdown = 1f / fireRate;
+            }
+
+            fireCountdown -= Time.deltaTime;
+        }
+    }
+
+    void Laser()
+    {
+        targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
+        targetEnemy.Slow(slowP);
+
+        if (!lineRenderer.enabled)
+            lineRenderer.enabled = true;
+        
+        lineRenderer.SetPosition(0, FirePoint.position);
+        lineRenderer.SetPosition(1, target.position);
     }
 
     void Shoot()
