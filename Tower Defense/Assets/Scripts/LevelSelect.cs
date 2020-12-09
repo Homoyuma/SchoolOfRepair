@@ -7,10 +7,10 @@ public class LevelSelect : MonoBehaviour
 {
     public void Level1Button ()
     {
-        SceneManager.LoadScene ("SampleScene");
+        SceneManager.LoadScene ("Level 1");
     }
     public void Level2Button ()
     {
-        Debug.Log ("There is no level 2!");
+        SceneManager.LoadScene("Level 2");
     }
 }
