@@ -8,12 +8,13 @@ public class EnemyMovement : MonoBehaviour
     private Transform target;
     int curWaypointIndex = 0;
     public Transform[] waypoints;
-
+    Animator anim;
     private MoveToWayPoint enemy;
 
     private void Start()
     {
         enemy = GetComponent<MoveToWayPoint>();
+        anim = GetComponent<Animator>();
     }
     void EndPath()
     {
@@ -30,6 +31,28 @@ public class EnemyMovement : MonoBehaviour
             if (Vector2.Distance(transform.position, waypoints[curWaypointIndex].position) < 0.5f)
             {
                 curWaypointIndex++;
+                if (curWaypointIndex >= waypoints.Length)
+                    return;
+                if (waypoints[curWaypointIndex].position.x > waypoints[curWaypointIndex - 1].position.x
+                        && waypoints[curWaypointIndex].position.y > waypoints[curWaypointIndex - 1].position.y)
+                {
+                    anim.SetInteger("Move", 0);
+                }
+                else if (waypoints[curWaypointIndex].position.x < waypoints[curWaypointIndex - 1].position.x
+                    && waypoints[curWaypointIndex].position.y < waypoints[curWaypointIndex - 1].position.y)
+                {
+                    anim.SetInteger("Move", 1);
+                }
+                else if (waypoints[curWaypointIndex].position.x > waypoints[curWaypointIndex - 1].position.x
+                    && waypoints[curWaypointIndex].position.y < waypoints[curWaypointIndex - 1].position.y)
+                {
+                    anim.SetInteger("Move", 0);
+                }
+                else if (waypoints[curWaypointIndex].position.x < waypoints[curWaypointIndex - 1].position.x
+                    && waypoints[curWaypointIndex].position.y > waypoints[curWaypointIndex - 1].position.y)
+                {
+                    anim.SetInteger("Move", 1);
+                }
             }
         }
         else
