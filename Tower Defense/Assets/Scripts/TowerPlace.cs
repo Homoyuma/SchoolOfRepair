@@ -11,25 +11,42 @@ public class TowerPlace : MonoBehaviour
 
     public static TowerPlace instance;
     private TowerBlueprint towerToBuild;
+    private TowerPlace selectedTower;
 
+    public TowerUI towerUI;
     public bool CanBuild { get { return towerToBuild != null;  } }
+
+    public void SelectTower(TowerPlace sTower)
+    {
+        if(selectedTower == sTower)
+        {
+            DeselectTower();
+            return;
+        }
+        selectedTower = sTower;
+        towerToBuild = null;
+
+        towerUI.SetTarget(sTower);
+    }
+
+    public void DeselectTower()
+    {
+        selectedTower = null;
+        towerUI.Hide();
+    }
 
     public void SelectTowerToBuild(TowerBlueprint tower)
     {
         towerToBuild = tower;
+
+        DeselectTower();
     }
 
     private void Start()
     {
         instance = this;
         tilemap = GetComponent<Tilemap>();
-        foreach (var position in tilemap.cellBounds.allPositionsWithin)
-        {
-            if (!tilemap.HasTile(position))
-            {
-                continue;
-            }
-        }
+        
         FillArray();
 
     }
@@ -44,6 +61,16 @@ public class TowerPlace : MonoBehaviour
             }
             tiles.Add(new Tile(position));
         }
+    }
+
+    public Vector3 GetBuildPosition()
+    {
+        Vector3 offset = new Vector3(0, 0.30f, 0f);
+        Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pz.z = 0;
+
+        Vector3Int cellPosition = tilemap.WorldToCell(pz);
+        return tilemap.CellToWorld(cellPosition) + offset;
     }
 
     void OnMouseDown()
@@ -74,11 +101,10 @@ public class TowerPlace : MonoBehaviour
                 tile.empty = false;
                 Debug.Log("Money left: " + PlayerStats.Gold);
             }
-            /*else
+            else
             {
-                Destroy(tile.tower);
-                tile.empty = true;
-            }*/
+                SelectTower(this);
+            }
         }
     }
 }
