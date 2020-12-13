@@ -46,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
                 else if (waypoints[curWaypointIndex].position.x > waypoints[curWaypointIndex - 1].position.x
                     && waypoints[curWaypointIndex].position.y < waypoints[curWaypointIndex - 1].position.y)
                 {
-                    anim.SetInteger("Move", 0);
+                    anim.SetInteger("Move", 2);
                 }
                 else if (waypoints[curWaypointIndex].position.x < waypoints[curWaypointIndex - 1].position.x
                     && waypoints[curWaypointIndex].position.y > waypoints[curWaypointIndex - 1].position.y)
