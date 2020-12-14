@@ -1645,7 +1645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411870570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.65502244, y: -2.3304362, z: 0}
+  m_LocalPosition: {x: 0.07, y: -6.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2045642966}
@@ -3363,10 +3363,16 @@ MonoBehaviour:
     prefab: {fileID: 6894440568631228465, guid: e4d8bd2080981b641a04b716b71b35be,
       type: 3}
     cost: 100
+    upgradedPrefab: {fileID: 6523585759978743441, guid: 663906451ae181442ad17db8436fdd03,
+      type: 3}
+    upgradeCost: 75
   WaterTower:
     prefab: {fileID: 8304317392387760921, guid: ee27c7a2983592945a81f7e9aa0e7b54,
       type: 3}
     cost: 50
+    upgradedPrefab: {fileID: 5802120735131465440, guid: bbf470922330a6d4eb1a06d1cd33b0b9,
+      type: 3}
+    upgradeCost: 35
 --- !u!114 &801657274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7541,7 +7547,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1441371114}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 411870572}
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1441371114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8698,6 +8715,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
+  tower: {fileID: 0}
+  towerBlueprint:
+    prefab: {fileID: 0}
+    cost: 0
+    upgradedPrefab: {fileID: 0}
+    upgradeCost: 0
+  isUpgraded: 0
   towerUI: {fileID: 411870572}
 --- !u!1 &1767613488
 GameObject:

@@ -13,6 +13,11 @@ public class TowerPlace : MonoBehaviour
     private TowerBlueprint towerToBuild;
     private TowerPlace selectedTower;
 
+    [HideInInspector]
+    public GameObject tower;
+    public TowerBlueprint towerBlueprint;
+    public bool isUpgraded = false;
+
     public TowerUI towerUI;
     public bool CanBuild { get { return towerToBuild != null;  } }
 
@@ -50,6 +55,7 @@ public class TowerPlace : MonoBehaviour
         FillArray();
 
     }
+
     private void FillArray()
     {
         tiles = new List<Tile>();
@@ -72,15 +78,18 @@ public class TowerPlace : MonoBehaviour
         Vector3Int cellPosition = tilemap.WorldToCell(pz);
         return tilemap.CellToWorld(cellPosition) + offset;
     }
-
-    void OnMouseDown()
+    
+    public TowerBlueprint GetTowerToBuild()
     {
-        if (!CanBuild)
-            return;
+        return towerToBuild;
+    }
+
+    void BuildTower(TowerBlueprint blueprint)
+    {
         Vector3 offset = new Vector3(0, 0.30f, 0f);
         Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pz.z = 0;
-        
+
         Vector3Int cellPosition = tilemap.WorldToCell(pz);
         foreach (Tile tile in tiles)
         {
@@ -88,17 +97,18 @@ public class TowerPlace : MonoBehaviour
             {
                 continue;
             }
-            if(tile.empty)
+            if (tile.empty)
             {
-                if (PlayerStats.Gold < towerToBuild.cost)
+                if (PlayerStats.Gold < blueprint.cost)
                 {
                     Debug.Log("Not enough money");
                     return;
                 }
-                PlayerStats.Gold -= towerToBuild.cost;
+                PlayerStats.Gold -= blueprint.cost;
 
-                tile.tower = Instantiate(towerToBuild.prefab, tilemap.CellToWorld(tile.position) + offset, Quaternion.identity);
+                tile.tower = Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
                 tile.empty = false;
+                towerBlueprint = blueprint;
                 Debug.Log("Money left: " + PlayerStats.Gold);
             }
             else
@@ -106,5 +116,46 @@ public class TowerPlace : MonoBehaviour
                 SelectTower(this);
             }
         }
+    }
+
+    public void UpgradeTower()
+    {
+        Vector3 offset = new Vector3(0, 0.30f, 0f);
+        Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pz.z = 0;
+
+        Vector3Int cellPosition = tilemap.WorldToCell(pz);
+        foreach (Tile tile in tiles)
+        {
+            if (tile.position != cellPosition)
+            {
+                continue;
+            }
+            if (tile.empty)
+            {
+                if (PlayerStats.Gold < towerBlueprint.upgradeCost)
+                {
+                    Debug.Log("Not enough money");
+                    return;
+                }
+                PlayerStats.Gold -= towerBlueprint.upgradeCost;
+
+                Destroy(tile.tower);
+
+                tile.tower = Instantiate(towerBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+                tile.empty = false;
+                isUpgraded = true;
+                Debug.Log("Money left: " + PlayerStats.Gold);
+            }
+            else
+            {
+                SelectTower(this);
+            }
+        }
+    }
+
+    void OnMouseDown()
+    {
+        BuildTower(GetTowerToBuild());
     }
 }

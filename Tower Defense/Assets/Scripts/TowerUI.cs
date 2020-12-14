@@ -20,4 +20,10 @@ public class TowerUI : MonoBehaviour
     {
         ui.SetActive(false);
     }
+
+    public void Upgrade()
+    {
+        target.UpgradeTower();
+        TowerPlace.instance.DeselectTower();
+    }
 }
