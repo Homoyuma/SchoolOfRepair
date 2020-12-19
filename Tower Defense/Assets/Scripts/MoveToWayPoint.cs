@@ -15,6 +15,7 @@ public class MoveToWayPoint : MonoBehaviour
     public float health;
 
     public Image healthBar;
+    public bool dead = false;
 
     void Start()
     {
@@ -39,9 +40,14 @@ public class MoveToWayPoint : MonoBehaviour
 
     void Die()
     {
-        PlayerStats.Gold += worth;
-        MobSpawn.enemiesAlive--;
-        Destroy(gameObject);
+        if (!dead)
+        {
+            dead = true;
+            PlayerStats.Gold += worth;
+            MobSpawn.enemiesAlive--;
+            Destroy(gameObject);
+            Debug.Log(gameObject);
+        }
     }
 
     
