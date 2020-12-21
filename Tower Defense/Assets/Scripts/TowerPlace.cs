@@ -16,7 +16,6 @@ public class TowerPlace : MonoBehaviour
     [HideInInspector]
     public GameObject tower;
     public TowerBlueprint towerBlueprint;
-    public bool isUpgraded = false;
 
     public TowerUI towerUI;
     public bool CanBuild { get { return towerToBuild != null;  } }
@@ -134,12 +133,41 @@ public class TowerPlace : MonoBehaviour
                 Debug.Log("Not enough money");
                 return;
             }
+
+            if (tile.isUpgraded)
+            {
+                return;
+            }
+
             Vector3 pos = target.transform.position;
             Destroy(target.gameObject);
             PlayerStats.Gold -= towerBlueprint.upgradeCost;
             tile.tower = Instantiate(towerBlueprint.upgradedPrefab, pos, Quaternion.identity);
-            isUpgraded = true;
+            tile.isUpgraded = true;
             Debug.Log("Money left: " + PlayerStats.Gold);
+        }
+    }
+
+    public void SellTower(Tower target)
+    {
+        int sellAmount = towerBlueprint.cost / 2;
+        Vector3Int cellPosition = tilemap.WorldToCell(target.transform.position);
+        foreach (Tile tile in tiles)
+        {
+            if (tile.position != cellPosition)
+            {
+                continue;
+            }
+            Destroy(target.gameObject);
+            tile.empty = true;
+            Debug.Log("Money left: " + PlayerStats.Gold);
+            if (tile.isUpgraded)
+            {
+                sellAmount += towerBlueprint.upgradeCost/2;
+            }
+            PlayerStats.Gold += sellAmount;
+            towerBlueprint = null;
+            tile.isUpgraded = false;
         }
     }
 

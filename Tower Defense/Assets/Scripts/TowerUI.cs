@@ -29,4 +29,10 @@ public class TowerUI : MonoBehaviour
         towerPlace.UpgradeTower(target);
         TowerPlace.instance.DeselectTower();
     }
+
+    public void SellT()
+    {
+        towerPlace.SellTower(target);
+        TowerPlace.instance.DeselectTower();
+    }
 }
