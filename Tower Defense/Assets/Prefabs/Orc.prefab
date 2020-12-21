@@ -106,6 +106,7 @@ MonoBehaviour:
   worth: 30
   health: 0
   healthBar: {fileID: 375180136979793957}
+  dead: 0
 --- !u!50 &1997883015550764552
 Rigidbody2D:
   serializedVersion: 4

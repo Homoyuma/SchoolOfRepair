@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MoveToWayPoint : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class MoveToWayPoint : MonoBehaviour
 
     public Image healthBar;
     public bool dead = false;
+    
+    public static int score;
+    public static int record = 0;
 
     void Start()
     {
@@ -46,9 +50,13 @@ public class MoveToWayPoint : MonoBehaviour
             PlayerStats.Gold += worth;
             MobSpawn.enemiesAlive--;
             Destroy(gameObject);
+            record = PlayerPrefs.GetInt("savescores"); 
+            score++;
+            if (score>record) {
+                PlayerPrefs.SetInt("savescores", score);
+                PlayerPrefs.Save();
+            }
             Debug.Log(gameObject);
         }
     }
-
-    
 }
