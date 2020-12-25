@@ -19,7 +19,7 @@ public class MobSpawn : MonoBehaviour
 
     void Start()
     {
-
+        enemyCount = 0;
     }
 
     void Update()

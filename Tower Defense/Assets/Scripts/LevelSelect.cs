@@ -13,4 +13,8 @@ public class LevelSelect : MonoBehaviour
     {
         SceneManager.LoadScene("Level 2");
     }
+    public void Level3Button()
+    {
+        SceneManager.LoadScene("InfinityLevel");
+    }
 }
