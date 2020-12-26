@@ -13,8 +13,8 @@ public class TowerUI : MonoBehaviour
     {
         target = _target;
 
-        Vector3 offset = new Vector3(0.2f, -0.5f, 0f);
-        transform.position = towerPlace.GetBuildPosition() + offset;
+        Vector3 offset = new Vector3(4, -2, 0f);
+        transform.position =  offset;
 
         ui.SetActive(true);
     }

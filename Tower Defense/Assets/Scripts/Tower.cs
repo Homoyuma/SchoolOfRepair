@@ -6,6 +6,7 @@ public class Tower : MonoBehaviour
 {
     private Transform target;
     private MoveToWayPoint targetEnemy;
+    public TowerBlueprint towerBlueprint;
 
     [Header("General")]
     public float range = 2f;

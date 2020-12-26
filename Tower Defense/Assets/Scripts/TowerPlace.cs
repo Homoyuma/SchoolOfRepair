@@ -15,7 +15,7 @@ public class TowerPlace : MonoBehaviour
 
     [HideInInspector]
     public GameObject tower;
-    public TowerBlueprint towerBlueprint;
+
 
     public TowerUI towerUI;
     public bool CanBuild { get { return towerToBuild != null;  } }
@@ -106,7 +106,8 @@ public class TowerPlace : MonoBehaviour
 
                 tile.tower = Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
                 tile.empty = false;
-                towerBlueprint = blueprint;
+
+                tile.tower.GetComponent<Tower>().towerBlueprint = blueprint;
                 Debug.Log("Money left: " + PlayerStats.Gold);
                 Debug.Log("build"+GetBuildPosition());
             }
@@ -128,7 +129,7 @@ public class TowerPlace : MonoBehaviour
                 continue;
             }
 
-            if (PlayerStats.Gold < towerBlueprint.upgradeCost)
+            if (PlayerStats.Gold < target.towerBlueprint.upgradeCost)
             {
                 Debug.Log("Not enough money");
                 return;
@@ -141,8 +142,9 @@ public class TowerPlace : MonoBehaviour
 
             Vector3 pos = target.transform.position;
             Destroy(target.gameObject);
-            PlayerStats.Gold -= towerBlueprint.upgradeCost;
-            tile.tower = Instantiate(towerBlueprint.upgradedPrefab, pos, Quaternion.identity);
+            PlayerStats.Gold -= target.towerBlueprint.upgradeCost;
+            tile.tower = Instantiate(target.towerBlueprint.upgradedPrefab, pos, Quaternion.identity);
+            tile.tower.GetComponent<Tower>().towerBlueprint = target.towerBlueprint;
             tile.isUpgraded = true;
             Debug.Log("Money left: " + PlayerStats.Gold);
         }
@@ -150,7 +152,7 @@ public class TowerPlace : MonoBehaviour
 
     public void SellTower(Tower target)
     {
-        int sellAmount = towerBlueprint.cost / 2;
+        int sellAmount = target.towerBlueprint.cost / 2;
         Vector3Int cellPosition = tilemap.WorldToCell(target.transform.position);
         foreach (Tile tile in tiles)
         {
@@ -163,10 +165,10 @@ public class TowerPlace : MonoBehaviour
             Debug.Log("Money left: " + PlayerStats.Gold);
             if (tile.isUpgraded)
             {
-                sellAmount += towerBlueprint.upgradeCost/2;
+                sellAmount += target.towerBlueprint.upgradeCost/2;
             }
             PlayerStats.Gold += sellAmount;
-            towerBlueprint = null;
+            target.towerBlueprint = null;
             tile.isUpgraded = false;
         }
     }

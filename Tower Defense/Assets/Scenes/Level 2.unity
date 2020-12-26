@@ -3654,14 +3654,14 @@ MonoBehaviour:
     cost: 100
     upgradedPrefab: {fileID: 6523585759978743441, guid: 663906451ae181442ad17db8436fdd03,
       type: 3}
-    upgradeCost: 75
+    upgradeCost: 70
   WaterTower:
     prefab: {fileID: 8304317392387760921, guid: ee27c7a2983592945a81f7e9aa0e7b54,
       type: 3}
     cost: 50
     upgradedPrefab: {fileID: 5802120735131465440, guid: bbf470922330a6d4eb1a06d1cd33b0b9,
       type: 3}
-    upgradeCost: 35
+    upgradeCost: 30
 --- !u!114 &801657274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3760,8 +3760,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30.309, y: -46.02}
-  m_SizeDelta: {x: 43.68811, y: 22.039146}
+  m_AnchoredPosition: {x: 23.83, y: -83.9}
+  m_SizeDelta: {x: 128.51639, y: 45.033268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &819890683
 MonoBehaviour:
@@ -3805,7 +3805,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 819890684}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 885116909}
+        m_MethodName: SellT
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &819890684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3974,7 +3985,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885116908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.664, y: -6.26, z: 0}
+  m_LocalPosition: {x: 0.664, y: -5.251, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1389470637}
@@ -7530,7 +7541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0211, y: 0.9379}
+  m_AnchoredPosition: {x: 2.11, y: -0.03}
   m_SizeDelta: {x: 150.13916, y: 48.573105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1389662322
@@ -8138,7 +8149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.7, y: -38.4}
+  m_AnchoredPosition: {x: 0, y: -12}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1602459654
@@ -9242,11 +9253,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   tower: {fileID: 0}
-  towerBlueprint:
-    prefab: {fileID: 0}
-    cost: 0
-    upgradedPrefab: {fileID: 0}
-    upgradeCost: 0
   towerUI: {fileID: 885116909}
 --- !u!1 &1767613488
 GameObject:
@@ -9595,8 +9601,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30.308544, y: -15}
-  m_SizeDelta: {x: 60.61709, y: 30}
+  m_AnchoredPosition: {x: 23.83, y: -14.56}
+  m_SizeDelta: {x: 152.34262, y: 76.94001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1818335166
 MonoBehaviour:
