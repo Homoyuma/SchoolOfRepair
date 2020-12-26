@@ -19,6 +19,7 @@ public class InfinityMobSpawn : MonoBehaviour
     void Start()
     {
         enemyCount = 0;
+        MoveToWayPoint.score = 0; 
     }
 
     void Update()
